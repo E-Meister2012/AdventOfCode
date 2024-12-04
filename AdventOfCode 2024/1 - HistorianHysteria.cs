@@ -20,6 +20,7 @@ namespace AdventOfCode_2024
             }
             return isSecond ? CalcuateSimilarity(firstList, secondList) : CalculateTotalDiff(firstList, secondList);
         }
+
         static List<int> Insert(List<int> result, int insert)
         {
             for(int i = result.Count - 1; i >= 0; i--)
@@ -49,14 +50,13 @@ namespace AdventOfCode_2024
             int lastResult = -1;
             foreach(int i in firstList)
             {
-                if (i == lastInt)
-                    totalSimm += lastResult;
-                else
+                if (i != lastInt)
                 {
                     lastInt = i;
                     lastResult = secondList.FindAll(n => n == i).Count * i;
-                    totalSimm += lastResult;
                 }
+                totalSimm += lastResult;
+
             }
             return totalSimm;
         }

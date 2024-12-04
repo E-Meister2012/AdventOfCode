@@ -1,5 +1,4 @@
 ﻿using AdventOfCodeBase;
-using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
 
 namespace AdventOfCode_2024
