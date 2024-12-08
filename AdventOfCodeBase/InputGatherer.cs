@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.IO;
 using System.IO.Ports;
 using System.Linq;
@@ -29,6 +30,10 @@ namespace AdventOfCodeBase
             Console.Write("NOTE: if \"1\" or \"2\" is not entered, it defaults to part 1:  ");
             var userInput = Console.ReadLine();
             return userInput == "2";
+        }
+        public static bool IsInBounds(int x, int y, int length, int width)
+        {
+            return x >= 0 && x < width && y >= 0 && y < length;
         }
     }
 }
