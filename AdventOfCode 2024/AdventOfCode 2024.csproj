@@ -12,4 +12,12 @@
     <ProjectReference Include="..\AdventOfCodeBase\AdventOfCodeBase.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <EditorConfigFiles Remove="C:\Users\ekere\source\repos\AdventOfCode\AdventOfCode 2024\.editorconfig" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="C:\Users\ekere\source\repos\AdventOfCode\AdventOfCode 2024\.editorconfig" />
+  </ItemGroup>
+
 </Project>
