@@ -18,7 +18,7 @@ namespace AdventOfCodeBase
             string projectRoot = Path.Combine(basePath, @"..\..\..");
             string filePath = Path.Combine(projectRoot, $@"Inputs\{problem}.txt");
             StreamReader sr = new StreamReader(filePath);
-            string[] file = sr.ReadToEnd().Split('\n');
+            string[] file = sr.ReadToEnd().Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
             foreach (string line in file)
                 result.Enqueue(line);
             return result;
