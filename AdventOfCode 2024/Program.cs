@@ -11,4 +11,5 @@
 //Console.WriteLine($"The solution of the Disk Fragmenter problem is {DiskFragmenter.GetInput()}");
 //Console.WriteLine($"The solution of the HoofIt problem is {HoofIt.GetInput()}");
 //Console.WriteLine($"The solution of the Plutonian Pebbles problem is {PlutonianPebbles.GetInput()}");
-Console.WriteLine($"The solution of the Garden Groups problem is {GardenGroups.GetInput()}");
+//Console.WriteLine($"The solution of the Garden Groups problem is {GardenGroups.GetInput()}");
+Console.WriteLine($"The solution of the Restroom Redoubt problem is {RestroomRedoubt.GetInput()}");
