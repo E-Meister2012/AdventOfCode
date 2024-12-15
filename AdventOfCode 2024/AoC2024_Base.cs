@@ -9,8 +9,8 @@ namespace AdventOfCode_2024
         public static int GetInput()
         {
             int result = 0;
-            isSecond = InputGatherer.GetUserInput("Plutonian Pebbles");
-            Queue<String> fileQueue = InputGatherer.GetInputs("11 - PlutonianPebbles");
+            isSecond = InputGatherer.GetUserInput("NAME");
+            Queue<String> fileQueue = InputGatherer.GetInputs("DAY - NAME");
             Stopwatch watch = new Stopwatch();
             watch.Restart();
             //Handle Inputs
