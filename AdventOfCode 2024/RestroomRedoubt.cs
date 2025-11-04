@@ -20,7 +20,7 @@ namespace AdventOfCode_2024
         {
             int result = 0;
             isSecond = InputGatherer.GetUserInput("Restroom Redoubt");
-            Queue<String> fileQueue = InputGatherer.GetInputs("14 - RestroomRedoubt");
+            Queue<string> fileQueue = InputGatherer.GetInputs("14 - RestroomRedoubt");
             Stopwatch watch = new Stopwatch();
             List<Point> currentPositions = new();
             List<Point> velocities = new();

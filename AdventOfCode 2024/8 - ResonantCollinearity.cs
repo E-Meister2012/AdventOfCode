@@ -10,7 +10,7 @@ namespace AdventOfCode_2024
         public static int GetInput()
         {
             isSecond = InputGatherer.GetUserInput("Resonant Collinearity");
-            Queue<String> fileQueue = InputGatherer.GetInputs("8 - ResonantCollinearity");
+            Queue<string> fileQueue = InputGatherer.GetInputs("8 - ResonantCollinearity");
             length = fileQueue.Count;
             width = fileQueue.Peek().Length - 1;
             map = new char[width, length];

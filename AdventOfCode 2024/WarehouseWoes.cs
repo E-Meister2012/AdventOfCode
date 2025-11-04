@@ -22,7 +22,7 @@ namespace AdventOfCode_2024
             StreamWriter writer = new StreamWriter(filePath);
             int result = 0;
             isSecond = InputGatherer.GetUserInput("Warehouse Woes");
-            Queue<String> fileQueue = InputGatherer.GetInputs("15 - WarehouseWoes");
+            Queue<string> fileQueue = InputGatherer.GetInputs("15 - WarehouseWoes");
             Queue<char> directions = new();
             directionDictionary = new Dictionary<char, Point>()
             {
@@ -90,22 +90,22 @@ namespace AdventOfCode_2024
             }
             foreach (char c in directions)
             {
-                if ((c == '^' || c == 'v') && map[currentLocation.X + directionDictionary[c].X, currentLocation.Y + directionDictionary[c].Y] != '.'
-                    && map[currentLocation.X + directionDictionary[c].X, currentLocation.Y + directionDictionary[c].Y] != '#')
-                { }
+                //if ((c == '^' || c == 'v') && map[currentLocation.X + directionDictionary[c].X, currentLocation.Y + directionDictionary[c].Y] != '.'
+                //    && map[currentLocation.X + directionDictionary[c].X, currentLocation.Y + directionDictionary[c].Y] != '#')
+                //{ }
                 Move(c, currentLocation.X, currentLocation.Y, '@');
-                Console.WriteLine();
-                Console.WriteLine(c);
-                for (int y = 0; y < length; y++)
-                {
-                    for (int x = 0; x < width; x++)
-                    {
-                        Console.Write(map[x, y]);
-                        if (map[x, y] == 'O')
-                            result += x + 100 * y;
-                    }
-                    Console.WriteLine();
-                }
+                //Console.WriteLine();
+                //Console.WriteLine(c);
+                //for (int y = 0; y < length; y++)
+                //{
+                //    for (int x = 0; x < width; x++)
+                //    {
+                //        Console.Write(map[x, y]);
+                //        if (map[x, y] == 'O')
+                //            result += x + 100 * y;
+                //    }
+                //    Console.WriteLine();
+                //}
 
             }
             for (int y = 0; y < length; y++)

@@ -12,7 +12,7 @@ namespace AdventOfCode_2024
             long blinks = long.Parse(Console.ReadLine());
             
             //Handle Inputs
-            Queue<String> fileQueue = InputGatherer.GetInputs("11 - PlutonianPebbles");
+            Queue<string> fileQueue = InputGatherer.GetInputs("11 - PlutonianPebbles");
             Stopwatch watch = new();
             watch.Restart();
             watch.Start();

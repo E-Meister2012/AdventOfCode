@@ -11,7 +11,7 @@ namespace AdventOfCode_2024
             string input;
             long result = 0;
             isSecond = InputGatherer.GetUserInput("Claw Contraption");
-            Queue<String> fileQueue = InputGatherer.GetInputs("13 - ClawContraption");
+            Queue<string> fileQueue = InputGatherer.GetInputs("13 - ClawContraption");
             Stopwatch watch = new Stopwatch();
             watch.Restart();
             long runs = 0;

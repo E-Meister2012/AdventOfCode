@@ -10,7 +10,7 @@ namespace AdventOfCode_2023
         public static int GetInput()
         {
             bool isSecondPart = InputGatherer.GetUserInput("Cube Game");
-            Queue<String> fileQueue = InputGatherer.GetInputs("2 - Cube Game");
+            Queue<string> fileQueue = InputGatherer.GetInputs("2 - Cube Game");
 
             int sum = 0;
             while (fileQueue.Count > 0)

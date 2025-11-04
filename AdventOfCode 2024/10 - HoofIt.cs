@@ -13,7 +13,7 @@ namespace AdventOfCode_2024
             string input;
             int result = 0;
             isSecond = InputGatherer.GetUserInput("Hoof It");
-            Queue<String> fileQueue = InputGatherer.GetInputs("10 - HoofIt");
+            Queue<string> fileQueue = InputGatherer.GetInputs("10 - HoofIt");
             length = fileQueue.Count;
             width = fileQueue.Peek().Length - 1;
             map = new int[width, length];

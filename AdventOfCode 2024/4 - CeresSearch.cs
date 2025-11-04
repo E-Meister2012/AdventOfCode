@@ -9,7 +9,7 @@ namespace AdventOfCode_2024
         public static int GetInput()
         {
             bool isSecond = InputGatherer.GetUserInput("Ceres Search");
-            Queue<String> fileQueue = InputGatherer.GetInputs("4 - CeresSearch");
+            Queue<string> fileQueue = InputGatherer.GetInputs("4 - CeresSearch");
             length = fileQueue.Count;
             width = fileQueue.Peek().Length - 1;
             map = new char[width, length];

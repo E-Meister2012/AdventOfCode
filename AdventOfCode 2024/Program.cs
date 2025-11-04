@@ -1,5 +1,4 @@
 ﻿using AdventOfCode_2024;
-
 //Console.WriteLine($"The solution of the Historian Hysteria problem is {HistorianHysteria.GetInput()}");
 //Console.WriteLine($"The solution of the Red Nosed Reports problem is {RedNosedReports.GetInput()}");
 //Console.WriteLine($"The solution of the Mull it Over problem is {MullItOver.GetInput()}");
@@ -14,4 +13,12 @@
 //Console.WriteLine($"The solution of the Garden Groups problem is {GardenGroups.GetInput()}");
 //Console.WriteLine($"The solution of the Claw Contraption problem is {ClawContraption.GetInput()}");
 //Console.WriteLine($"The solution of the Restroom Redoubt problem is {RestroomRedoubt.GetInput()}");
-Console.WriteLine($"The solution of the Warehouse Woes problem is {WarehouseWoes.GetInput()}");
+//Console.WriteLine($"The solution of the Warehouse Woes problem is {WarehouseWoes.GetInput()}");
+//Console.WriteLine($"The solution of the Reindeer Maze problem is {ReindeerMaze.GetInput()}");
+//Console.WriteLine($"The solution of the Ram Run problem is {RamRun.GetInput()}");
+//Console.WriteLine($"The solution of the Linnen Layout problem is {LinnenLayout.GetInput()}");
+//Console.WriteLine($"The solution of the Keypad Conundrum problem is {KeypadConundrum.GetInput()}");
+//Console.WriteLine($"The solution of the Money Market problem is {MoneyMarket.GetInput()}");
+//Console.WriteLine($"The solution of the LAN Party problem is {LANParty.GetInput()}");
+//Console.WriteLine($"The solution of the Crossed Wires problem is {CrossedWires.GetInput()}");
+Console.WriteLine($"The solution of the Code Chronicle problem is {CodeChronicle.GetInput()}");

@@ -10,7 +10,7 @@ namespace AdventOfCode_2024
         {
             long result = 0;
             isSecond = InputGatherer.GetUserInput("Disk Fragmenter");
-            Queue<String> fileQueue = InputGatherer.GetInputs("9 - DiskFragmenter");
+            Queue<string> fileQueue = InputGatherer.GetInputs("9 - DiskFragmenter");
             string input = fileQueue.Dequeue();
             List<int> inputLengths = new();
             List<int> emptyLengths = new();

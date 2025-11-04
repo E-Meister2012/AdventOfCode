@@ -9,7 +9,7 @@ namespace AdventOfCode_2024
         {
             int result = 0;
             isSecond = InputGatherer.GetUserInput("Print Queue");
-            Queue<String> fileQueue = InputGatherer.GetInputs("5 - PrintQueue");
+            Queue<string> fileQueue = InputGatherer.GetInputs("5 - PrintQueue");
             string input = "";
             List<List<int>> updates = new List<List<int>>();
             List<KeyValuePair<int, int>> safetyProtocols = new List<KeyValuePair<int, int>>();

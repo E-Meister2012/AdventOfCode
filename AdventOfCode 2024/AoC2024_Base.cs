@@ -10,7 +10,7 @@ namespace AdventOfCode_2024
         {
             int result = 0;
             isSecond = InputGatherer.GetUserInput("NAME");
-            Queue<String> fileQueue = InputGatherer.GetInputs("DAY - NAME");
+            Queue<string> fileQueue = InputGatherer.GetInputs("DAY - NAME");
             Stopwatch watch = new Stopwatch();
             watch.Restart();
             //Handle Inputs

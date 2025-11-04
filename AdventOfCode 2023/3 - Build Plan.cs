@@ -14,7 +14,7 @@ namespace AdventOfCode_2023
         {
             int sum = 0;
             bool isSecondPart = InputGatherer.GetUserInput("Build Plan");
-            Queue<String> fileQueue = InputGatherer.GetInputs("3 - Build Plan");
+            Queue<string> fileQueue = InputGatherer.GetInputs("3 - Build Plan");
             length = fileQueue.Count;
             width = fileQueue.Peek().Length - 1;
             map = new char[width, length];
