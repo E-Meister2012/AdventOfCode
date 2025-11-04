@@ -22,3 +22,5 @@
 //Console.WriteLine($"The solution of the LAN Party problem is {LANParty.GetInput()}");
 //Console.WriteLine($"The solution of the Crossed Wires problem is {CrossedWires.GetInput()}");
 Console.WriteLine($"The solution of the Code Chronicle problem is {CodeChronicle.GetInput()}");
+//Console.WriteLine($"The solution of the Chronospatial Computer problem is {ChronospatialComputer.GetInput()}");
+Console.WriteLine($"The solution of the Race Condition problem is {RaceCondition.GetInput()}");

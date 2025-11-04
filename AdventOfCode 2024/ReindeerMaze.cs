@@ -1,6 +1,7 @@
 ﻿using AdventOfCodeBase;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Diagnostics;
 using System.Drawing;
 
@@ -8,22 +9,37 @@ namespace AdventOfCode_2024
 {
     internal class ReindeerMaze
     {
+        static List<List<Point>> points;
         static char[,] map;
         static int length, width;
         static bool isSecond;
-        static Point exitPosition;
+        static Point endPosition;
+        static int[,,] hasVisited;
+        static Queue<Visitations> visitations;
+        static Point[] directions;
 
         public static int GetInput()
         {
-            List<Point> visited = new();
+            List<Point> uniquePoints = new();
+            directions = new Point[]
+            {
+                new Point(1,0), //East
+                new Point(0,1), //South
+                new Point(-1,0), //West
+                new Point(0,-1) //North
+            };
             Point startingPosition = new Point();
-            int result = 0;
+            int result = int.MaxValue;
             isSecond = InputGatherer.GetUserInput("ReindeerMaze");
-            Queue<string> fileQueue = InputGatherer.GetInputs("16 - ReindeerMaze");
+            Queue<String> fileQueue = InputGatherer.GetInputs("16 - ReindeerMaze");
             Stopwatch watch = new Stopwatch();
             watch.Restart();
+            points = new();
+            visitations = new Queue<Visitations>();
+
             length = fileQueue.Count;
             width = fileQueue.Peek().Length;
+            hasVisited = new int[width, length, 4];
             map = new char[width, length];
             for (int y = 0; y < length; y++)
             {
@@ -34,14 +50,27 @@ namespace AdventOfCode_2024
                     if (input[x] == 'S')
                         startingPosition = new Point(x, y);
                     if (input[x] == 'E')
-                        exitPosition = new Point(x, y);
+                        endPosition = new Point(x, y);
+
                 }
             }
-
-            result = AStar(startingPosition);
+            visitations.Enqueue(new Visitations(startingPosition.X, startingPosition.Y, directions[0], 0, 0, new List<Point>()));
+            while (visitations.Count > 0)
+            {
+                int bestRoute = GetBestRoute(visitations.Dequeue(), out Visitations visited);
+                if (bestRoute > 0)
+                {
+                    if(bestRoute < result)
+                    {
+                        result = bestRoute;
+                        points.Clear();
+                        points.Add(visited.visited);
+                    }
+                    else if (bestRoute == result)
+                        points.Add(visited.visited);
+                }
+            }
             watch.Stop();
-
-            // Output the map (optional)
             for (int y = 0; y < length; y++)
             {
                 for (int x = 0; x < width; x++)
@@ -50,100 +79,86 @@ namespace AdventOfCode_2024
                 }
                 Console.WriteLine();
             }
-
+            foreach(List<Point> list in points)
+            {
+                foreach (Point p in list)
+                    if (!uniquePoints.Contains(p))
+                        uniquePoints.Add(p);
+                if(!uniquePoints.Contains(endPosition))
+                uniquePoints.Add(endPosition);
+            }
             Console.WriteLine($"The program took {watch.ElapsedMilliseconds}ms");
-            return result;
+            return isSecond ? uniquePoints.Count() : result;
         }
-
-        // A* pathfinding algorithm
-        static int AStar(Point start)
+        static int GetBestRoute(Visitations visitation, out Visitations visited)
         {
-            // Priority queue for A* (stores (f, g, x, y))
-            var openSet = new SortedSet<PriorityQueueNode>(Comparer<PriorityQueueNode>.Create(
-                (a, b) => a.F == b.F ? a.G.CompareTo(b.G) : a.F.CompareTo(b.F)));
-            var cameFrom = new Dictionary<Point, Point>();
-            var gScore = new Dictionary<Point, int>();  // Cost from start to each point
-            var fScore = new Dictionary<Point, int>();  // Estimated total cost
-
-            openSet.Add(new PriorityQueueNode(0, 0, start));  // f = g + h, where g = 0 initially
-            gScore[start] = 0;
-            fScore[start] = Heuristic(start, exitPosition);
-
-            while (openSet.Count > 0)
+            visited = visitation;
+            Console.WriteLine($"Position {visitation.x},{visitation.y} with direction {visitation.direction}");
+            if (visitation.x == endPosition.X && visitation.y == endPosition.Y)
+                return visitation.score;
+            visitation.AddPoint();
+            Point newPosition = visitation.Move();
+            CheckRotations(visitation);
+            while (InputGatherer.IsInBounds(newPosition.X, newPosition.Y, length, width) && map[newPosition.X, newPosition.Y] != '#')
             {
-                // Get the point with the lowest fScore
-                var current = openSet.Min;
-                openSet.Remove(current);
-                Point currentPos = current.Position;
-
-                if (currentPos == exitPosition)
+                if (hasVisited[newPosition.X, newPosition.Y, visitation.directionIndex] >= visitation.score
+                    || hasVisited[newPosition.X, newPosition.Y, visitation.directionIndex] == 0)
                 {
-                    return gScore[currentPos];  // Return the cost to reach the exit
+                    hasVisited[newPosition.X, newPosition.Y, visitation.directionIndex] = visitation.score;
                 }
-
-                foreach (var neighbor in GetNeighbors(currentPos))
-                {
-                    if (map[neighbor.X, neighbor.Y] == '#') continue;  // Ignore walls
-
-                    int tentativeGScore = gScore.GetValueOrDefault(currentPos, int.MaxValue) + 1;
-
-                    if (!gScore.ContainsKey(neighbor) || tentativeGScore < gScore[neighbor])
-                    {
-                        cameFrom[neighbor] = currentPos;
-                        gScore[neighbor] = tentativeGScore;
-                        fScore[neighbor] = tentativeGScore + Heuristic(neighbor, exitPosition);
-
-                        openSet.Add(new PriorityQueueNode(fScore[neighbor], tentativeGScore, neighbor));
-                    }
-                }
+                visitation.x = newPosition.X; visitation.y = newPosition.Y; visitation.score++;
+                CheckRotations(visitation);
+                if (visitation.x == endPosition.X && visitation.y == endPosition.Y)
+                    return visitation.score;
+                newPosition = visitation.Move();
+                visitation.AddPoint();
+                visited = visitation;
             }
-
-            return int.MaxValue;  // If no path exists
+            visited = visitation;
+            return -1;
         }
-
-        static int Heuristic(Point a, Point b)
+        static void CheckRotations(Visitations visitation)
         {
-            // Manhattan distance as heuristic
-            return Math.Abs(a.X - b.X) + Math.Abs(a.Y - b.Y);
-        }
-
-        static List<Point> GetNeighbors(Point pos)
-        {
-            var directions = new List<Point>
+            int clockwiseRotation = (visitation.directionIndex + 1) % directions.Length;
+            if ((hasVisited[visitation.x, visitation.y, clockwiseRotation] >= visitation.score||
+                hasVisited[visitation.x, visitation.y, clockwiseRotation] == 0)
+                && map[visitation.x + directions[clockwiseRotation].X, visitation.y + directions[clockwiseRotation].Y] != '#')
             {
-                new Point(0, 1),   // Down
-                new Point(1, 0),   // Right
-                new Point(0, -1),  // Up
-                new Point(-1, 0)   // Left
-            };
-
-            var neighbors = new List<Point>();
-            foreach (var dir in directions)
-            {
-                var newPos = new Point(pos.X + dir.X, pos.Y + dir.Y);
-                // Check if the new position is within bounds and walkable
-                if (newPos.X >= 0 && newPos.X < width && newPos.Y >= 0 && newPos.Y < length)
-                {
-                    neighbors.Add(newPos);
-                }
+                hasVisited[visitation.x, visitation.y, clockwiseRotation] = visitation.score;
+                visitations.Enqueue(new Visitations(visitation.x, visitation.y, directions[clockwiseRotation], clockwiseRotation, visitation.score + 1000, visitation.visited.ToList()));
             }
-
-            return neighbors;
-        }
-
-        // Custom class to store the f, g values and Position
-        public class PriorityQueueNode
-        {
-            public int F { get; }
-            public int G { get; }
-            public Point Position { get; }
-
-            public PriorityQueueNode(int f, int g, Point position)
+            int counterClockwiseRotation = (visitation.directionIndex + (directions.Length - 1)) % directions.Length;
+            if ((hasVisited[visitation.x, visitation.y, counterClockwiseRotation] >= visitation.score ||
+                hasVisited[visitation.x, visitation.y, counterClockwiseRotation] == 0)
+                && map[visitation.x + directions[counterClockwiseRotation].X, visitation.y + directions[counterClockwiseRotation].Y] != '#')
             {
-                F = f;
-                G = g;
-                Position = position;
+                hasVisited[visitation.x, visitation.y, counterClockwiseRotation] = visitation.score;
+                visitations.Enqueue(new Visitations(visitation.x, visitation.y, directions[counterClockwiseRotation], counterClockwiseRotation, visitation.score + 1000, visitation.visited.ToList()));
             }
+        }
+    }
+    class Visitations
+    {
+        public int x, y, score, directionIndex;
+        public Point direction;
+        public List<Point> visited;
+
+        public Visitations(int x, int y, Point direction, int directionIndex, int score, List<Point> visited)
+        {
+            this.x = x;
+            this.y = y;
+            this.direction = direction;
+            this.score = score;
+            this.directionIndex = directionIndex;
+            this.visited = visited;
+        }
+        public Point Move()
+        {
+            return new Point(x + direction.X, y + direction.Y);
+        }
+        public void AddPoint()
+        {
+            visited.Add(new Point(x, y));
         }
     }
 }
