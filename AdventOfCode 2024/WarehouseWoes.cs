@@ -8,18 +8,13 @@ namespace AdventOfCode_2024
 {
     internal class WarehouseWoes
     {
-        static char[,] map, map2;
+        static char[,] map;
         static int width, length;
         static bool isSecond;
         static Point currentLocation;
         static Dictionary<char, Point> directionDictionary;
         public static int GetInput()
         {
-            int count = 0;
-            string basePath = AppDomain.CurrentDomain.BaseDirectory;
-            string projectRoot = Path.Combine(basePath, @"..\..\..");
-            string filePath = Path.Combine(projectRoot, $@"Inputs\15 - WarehouseWoesOuput.txt");
-            StreamWriter writer = new StreamWriter(filePath);
             int result = 0;
             isSecond = InputGatherer.GetUserInput("Warehouse Woes");
             Queue<String> fileQueue = InputGatherer.GetInputs("15 - WarehouseWoes");
@@ -89,25 +84,8 @@ namespace AdventOfCode_2024
                 Console.WriteLine();
             }
             foreach (char c in directions)
-            {
-                if ((c == '^' || c == 'v') && map[currentLocation.X + directionDictionary[c].X, currentLocation.Y + directionDictionary[c].Y] != '.'
-                    && map[currentLocation.X + directionDictionary[c].X, currentLocation.Y + directionDictionary[c].Y] != '#')
-                { }
-                Move(c, currentLocation.X, currentLocation.Y, '@');
-                Console.WriteLine();
-                Console.WriteLine(c);
-                for (int y = 0; y < length; y++)
-                {
-                    for (int x = 0; x < width; x++)
-                    {
-                        Console.Write(map[x, y]);
-                        if (map[x, y] == 'O')
-                            result += x + 100 * y;
-                    }
-                    Console.WriteLine();
-                }
 
-            }
+                Move(c, currentLocation.X, currentLocation.Y, '@');
             for (int y = 0; y < length; y++)
             {
                 for (int x = 0; x < width; x++)
@@ -125,7 +103,6 @@ namespace AdventOfCode_2024
         }
         static void Move(char dir,  int x, int y, char currentObject)
         {
-            bool moveBigBoxes = false;
             Point direction = directionDictionary[dir];
             Point newLocation = new Point(x + direction.X, y + direction.Y);
             switch(map[newLocation.X,newLocation.Y])
@@ -171,7 +148,7 @@ namespace AdventOfCode_2024
             }
             Point newPosition = new Point(x + direction.X, y + direction.Y);
             if (map[newPosition.X, newPosition.Y] == '[')
-            MoveBigBoxes(dir, newPosition.X, newPosition.Y, '[');
+                MoveBigBoxes(dir, newPosition.X, newPosition.Y, '[');
             if (map[newPosition.X, newPosition.Y] == ']')
                 MoveBigBoxes(dir, newPosition.X, newPosition.Y, ']');
             map[newPosition.X, newPosition.Y] = currentObject;
@@ -203,7 +180,7 @@ namespace AdventOfCode_2024
                         result &= CanMoveBigBoxes(dir, newLocation.X, newLocation.Y, '[');
                     break;
                 case ']':
-                        result &= CanMoveBigBoxes(dir, newLocation.X, newLocation.Y, '[');
+                        result &= CanMoveBigBoxes(dir, newLocation.X, newLocation.Y, ']');
                     break;
             }
             return result;
