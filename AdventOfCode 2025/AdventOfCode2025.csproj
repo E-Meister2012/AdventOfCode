@@ -7,12 +7,4 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\AdventOfCodeBase\AdventOfCodeBase.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Inputs\" />
-  </ItemGroup>
-
 </Project>
