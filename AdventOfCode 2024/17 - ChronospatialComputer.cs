@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using System.Xml.XPath;
 using AdventOfCodeBase;
 
 namespace AdventOfCode_2024
@@ -8,6 +9,8 @@ namespace AdventOfCode_2024
         static bool isSecond;
         static long registerA, registerB, registerC;
         static string input;
+        static long best = long.MaxValue;
+        static string expectedResult;
         public static string GetInput()
         {
             string result = "";
@@ -21,9 +24,13 @@ namespace AdventOfCode_2024
             registerC = long.Parse(fileQueue.Dequeue().Split(':', StringSplitOptions.TrimEntries)[1]);
             input = fileQueue.Dequeue().Split(':', StringSplitOptions.TrimEntries)[1];
             program = input.Split(",").Select(int.Parse).ToArray();
+            expectedResult = input;
             if (isSecond)
-                result = FindCopy(ref program).ToString();
-            else 
+            {
+                FindCopy(ref program, 0, expectedResult.Length / 2);
+                result = best.ToString();
+            }
+            else
                 result = RunProgram(ref program);
 
             watch.Stop();
@@ -51,17 +58,19 @@ namespace AdventOfCode_2024
             }
             return -1;
         }
-        static string RunProgram(ref int[] program)
+        static string RunProgram(ref int[] program, long potentialA = 0)
         {
             string result = "";
             int pointer = 0;
+            if(potentialA > 0) 
+                registerA = potentialA;
             while (pointer + 1 < program.Length)
             {
                 int opCode = program[pointer];
                 int operand = program[pointer + 1];
                 switch (opCode)
                 {
-                    case 0: 
+                    case 0:
                         registerA = (long)(registerA / (long)Math.Pow(2, GetComboOperand(operand)));
                         break;
                     case 1:
@@ -98,23 +107,24 @@ namespace AdventOfCode_2024
         {
             return string.Join(",", s.ToCharArray());
         }
-        static long FindCopy(ref int[] program)
+
+        //Part 2 copied from someone else
+        static void FindCopy(ref int[] program, long currentA, int index)
         {
-            long startA = 1;
-            for(startA = 1; startA < (long)Math.Pow(8, program.Length); startA++)
+            if(index == -1)
             {
-                registerA = startA;
-                string output = RunProgram(ref program);
-                int[] subProgram = program[(program.Length - output.Length)..];
-                bool matchesDigits = subProgram
-                    .Select((x, i) => int.Parse(output[i].ToString()) == x).All(x => x);
-                if (matchesDigits)
-                {
-                    if (output.Length == program.Length) break;
-                    startA = (startA* 8) - 1;
-                }
+                best = Math.Min(best, currentA);
+                return;
             }
-            return startA;
+
+            int next = expectedResult[index];
+            for(int i = 0; i < 8; i++)
+            {
+                long nextA = currentA * 8 + i;
+                string result = RunProgram(ref program, nextA);
+                if(expectedResult.EndsWith(result))
+                    FindCopy(ref program, nextA, index - 1);
+            }
         }
     }
 }

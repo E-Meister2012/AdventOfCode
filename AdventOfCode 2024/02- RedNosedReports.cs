@@ -8,11 +8,10 @@ namespace AdventOfCode_2024
         internal static int GetInput()
         {
             int result = 0;
-            Queue<string> fileQueue = InputGatherer.GetInputs("2- RedNosedReports");
+            Queue<string> fileQueue = InputGatherer.GetInputs("02- RedNosedReports");
             isSecond = InputGatherer.GetUserInput("Red Nosed Reports");
             while(fileQueue.Count > 0)
             {
-
                 string input = fileQueue.Dequeue();
                 List<int> levels = input.Split(' ').Select(int.Parse).ToList();
                 bool isSafe = CheckSafety(levels, false);

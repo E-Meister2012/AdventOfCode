@@ -10,7 +10,7 @@ namespace AdventOfCode_2024
         {
             long result = 0;
             isSecond = InputGatherer.GetUserInput("Disk Fragmenter");
-            Queue<string> fileQueue = InputGatherer.GetInputs("9 - DiskFragmenter");
+            Queue<string> fileQueue = InputGatherer.GetInputs("09 - DiskFragmenter");
             string input = fileQueue.Dequeue();
             List<int> inputLengths = new();
             List<int> emptyLengths = new();
@@ -24,6 +24,7 @@ namespace AdventOfCode_2024
                 if(i * 2 + 1 < input.Length)
                     emptyLengths.Add(int.Parse(input[i * 2 + 1].ToString()));
             }
+
             if (isSecond)
                 return CalculateSecondChecksum(inputLengths, emptyLengths, order);
             else
@@ -130,17 +131,11 @@ namespace AdventOfCode_2024
                 for(int j = 0; j < input[i]; j++)
                 {
                     total += order[i] * count;
-                    Console.Write(order[i]);
                     count++;
                 }
-                if(i < empty.Count())
-                {
+                if(i < empty.Count())    
                     count += empty[i];
-                    for (int j = 0; j < empty[i]; j++)
-                        Console.Write('.');
-                }
             }
-            Console.WriteLine();
             return total;
         }
 

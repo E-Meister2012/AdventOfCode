@@ -17,7 +17,7 @@ namespace AdventOfCodeBase
             string basePath = AppDomain.CurrentDomain.BaseDirectory;
             string projectRoot = Path.Combine(basePath, @"..\..\..");
             string filePath = Path.Combine(projectRoot, $@"Inputs\{problem}.txt");
-            StreamReader sr = new StreamReader(filePath);
+            StreamReader sr = new(filePath);
             string[] file = sr.ReadToEnd().Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
             foreach (string line in file)
                 result.Enqueue(line);

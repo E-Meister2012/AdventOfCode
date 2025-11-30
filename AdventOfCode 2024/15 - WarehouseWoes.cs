@@ -73,16 +73,6 @@ namespace AdventOfCode_2024
             }
 
             Console.WriteLine("Starting Position");
-            for (int y = 0; y < length; y++)
-            {
-                for (int x = 0; x < width; x++)
-                {
-                    Console.Write(map[x, y]);
-                    if (map[x, y] == 'O')
-                        result += x + 100 * y;
-                }
-                Console.WriteLine();
-            }
             foreach (char c in directions)
 
                 Move(c, currentLocation.X, currentLocation.Y, '@');
@@ -90,11 +80,12 @@ namespace AdventOfCode_2024
             {
                 for (int x = 0; x < width; x++)
                 {
-                    Console.Write(map[x, y]);
                     if ((map[x, y] == 'O' && !isSecond) || (map[x,y] == '[' && isSecond))
+                    {
                         result += x + 100 * y;
+                        Console.WriteLine(x + 100 * y);
+                    }
                 }
-                Console.WriteLine();
             }
 
             watch.Stop();

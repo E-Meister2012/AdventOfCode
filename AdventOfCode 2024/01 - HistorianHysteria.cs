@@ -6,10 +6,10 @@ namespace AdventOfCode_2024
     {
         public static int GetInput()
         {
-            Queue<string> fileQueue = InputGatherer.GetInputs("1 - Historian Hysteria");
+            Queue<string> fileQueue = InputGatherer.GetInputs("01 - Historian Hysteria");
             bool isSecond = InputGatherer.GetUserInput("Historian Hysteria");
-            List<int> firstList = new List<int>();
-            List<int> secondList = new List<int>();
+            List<int> firstList = new();
+            List<int> secondList = new();
             while (fileQueue.Count > 0)
             {
                 int[] input = fileQueue.Dequeue().Split(' ',

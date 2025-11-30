@@ -28,11 +28,11 @@ namespace AdventOfCode_2024
                 new Point(-1,0), //West
                 new Point(0,-1) //North
             };
-            Point startingPosition = new Point();
+            Point startingPosition = new();
             int result = int.MaxValue;
             isSecond = InputGatherer.GetUserInput("ReindeerMaze");
             Queue<String> fileQueue = InputGatherer.GetInputs("16 - ReindeerMaze");
-            Stopwatch watch = new Stopwatch();
+            Stopwatch watch = new();
             watch.Restart();
             points = new();
             visitations = new Queue<Visitations>();
@@ -71,14 +71,6 @@ namespace AdventOfCode_2024
                 }
             }
             watch.Stop();
-            for (int y = 0; y < length; y++)
-            {
-                for (int x = 0; x < width; x++)
-                {
-                    Console.Write(map[x, y]);
-                }
-                Console.WriteLine();
-            }
             foreach(List<Point> list in points)
             {
                 foreach (Point p in list)
@@ -87,13 +79,11 @@ namespace AdventOfCode_2024
                 if(!uniquePoints.Contains(endPosition))
                 uniquePoints.Add(endPosition);
             }
-            Console.WriteLine($"The program took {watch.ElapsedMilliseconds}ms");
             return isSecond ? uniquePoints.Count() : result;
         }
         static int GetBestRoute(Visitations visitation, out Visitations visited)
         {
             visited = visitation;
-            Console.WriteLine($"Position {visitation.x},{visitation.y} with direction {visitation.direction}");
             if (visitation.x == endPosition.X && visitation.y == endPosition.Y)
                 return visitation.score;
             visitation.AddPoint();

@@ -25,12 +25,9 @@ namespace AdventOfCode_2024
             List<Point> currentPositions = new();
             List<Point> velocities = new();
             watch.Restart();
-            Console.Write("What is the width? ");
-            width = int.Parse(Console.ReadLine());
-            Console.Write("What is the length? ");
-            length = int.Parse(Console.ReadLine());
-            Console.Write("How many seconds? ");
-            seconds = int.Parse(Console.ReadLine());
+            width = 101;
+            length = 103;
+            seconds = 100;
             while (fileQueue.Count > 0)
             {
                 string input = fileQueue.Dequeue();

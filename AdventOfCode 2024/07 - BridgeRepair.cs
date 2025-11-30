@@ -9,9 +9,9 @@ namespace AdventOfCode_2024
         {
             long result = 0;
             isSecond = InputGatherer.GetUserInput("Bridge Repair");
-            Queue<string> fileQueue = InputGatherer.GetInputs("7 - BridgeRepair");
+            Queue<string> fileQueue = InputGatherer.GetInputs("07 - BridgeRepair");
             string input = "";
-            Dictionary<long, List<long>> inputs = new Dictionary<long, List<long>>();
+            Dictionary<long, List<long>> inputs = new();
 
             while (fileQueue.Count > 0)
             {
@@ -36,14 +36,14 @@ namespace AdventOfCode_2024
             long concatValue = long.Parse(currentValue.ToString() + inputs[index].ToString());
 
             if(index == inputs.Count - 1)
-                if (addedValue == result || multipliedValue == result || concatValue == result)
+                if (addedValue == result || multipliedValue == result || (concatValue == result && isSecond))
                     return true;
 
             bool getMultiplied = GetResult(result, inputs, multipliedValue, index + 1);
             bool getAdded = GetResult(result, inputs, addedValue,  index + 1);
             bool getConcat = isSecond && GetResult(result, inputs, concatValue,  index + 1);
 
-            return getMultiplied || getAdded || getConcat;
+            return getMultiplied || getAdded || (getConcat && isSecond);
         }
     }
 }

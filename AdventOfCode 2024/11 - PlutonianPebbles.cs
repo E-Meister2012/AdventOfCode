@@ -8,7 +8,7 @@ namespace AdventOfCode_2024
         public static long GetInput() 
         {
             long result = 0;
-            Console.Write("How many blinks?  ");
+            Console.Write("Welcome to the Plutonian Pebbles problem, how many blinks are there?  ");
             long blinks = long.Parse(Console.ReadLine());
             
             //Handle Inputs

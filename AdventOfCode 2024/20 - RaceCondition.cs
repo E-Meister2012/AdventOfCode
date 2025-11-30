@@ -15,28 +15,26 @@ namespace AdventOfCode_2024
 {
     internal class RaceCondition
     {
-        static bool isSecond;
-        static HashSet<Point> visited = new();
-        static Dictionary<Point, int> values = new();
-        static Dictionary<int, int> values2 = new();
+        static readonly HashSet<Point> visited = new();
+        static readonly Dictionary<Point, int> values = new();
+        static readonly Dictionary<int, int> values2 = new();
         static int length, width;
         static Point startPos, endPos;
         static int allowedSteps, minScore;
         public static int GetInput()
         {
             int result = 0;
-            isSecond = InputGatherer.GetUserInput("Race Condition");
             Queue<String> fileQueue = InputGatherer.GetInputs("20 - RaceCondition");
-            Stopwatch watch = new Stopwatch();
+            Stopwatch watch = new();
             length = fileQueue.Count;
             width = fileQueue.Peek().Length;
             char[,] map = new char[length, width];
             Console.Write("How many steps are allowed?   ");
             while(allowedSteps == 0)
-                int.TryParse(Console.ReadLine(), out allowedSteps);
+                _ = int.TryParse(Console.ReadLine(), out allowedSteps);
             Console.Write("How many steps would you like to skip?   ");
             while (minScore == 0)
-                int.TryParse(Console.ReadLine(), out minScore);
+                _ = int.TryParse(Console.ReadLine(), out minScore);
 
             watch.Restart();
             for (int y = 0; y < length; y++)
@@ -64,22 +62,10 @@ namespace AdventOfCode_2024
 
             map = FindDirections(map);
 
-            for(int y = 0; y < length; y++)
-            {
-                for(int x = 0;x < width; x++)
-                    Console.Write(map[x, y]);
-                Console.WriteLine();
-            }
-
             foreach (Point p in values.Keys)
             {
                 visited.Clear();
                 result += BigCheat(map, p);
-            }
-
-            foreach (int i  in values2.Keys)
-            {
-                Console.WriteLine($"There are {values2[i]} cheats that save {i} picoseconds");
             }
 
             watch.Stop();

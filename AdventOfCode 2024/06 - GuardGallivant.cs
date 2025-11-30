@@ -19,7 +19,7 @@ namespace AdventOfCode_2024
         public static int GetInput()
         {
             isSecond = InputGatherer.GetUserInput("Guard Gallivant");
-            Queue<string> fileQueue = InputGatherer.GetInputs("6 - GuardGallivant");
+            Queue<string> fileQueue = InputGatherer.GetInputs("06 - GuardGallivant");
             string input;
             length = fileQueue.Count;
             width = fileQueue.Peek().Length - 1;
@@ -43,18 +43,6 @@ namespace AdventOfCode_2024
             //Get Guard pathing
             while (NextGuardMove())
                 continue;
-
-
-            //Drawing
-            for (int y = 0; y < length; y++)
-            {
-                for (int x = 0; x < width; x++)
-                {
-                    Console.Write(map[x, y]);
-                }
-                Console.WriteLine();
-            }
-            Console.WriteLine();
 
             //Return the correct value based on the part 
             return isSecond ? obstructions : visited.Count;

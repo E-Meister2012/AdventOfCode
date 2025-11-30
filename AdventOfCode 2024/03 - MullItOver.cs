@@ -12,7 +12,7 @@ namespace AdventOfCode_2024
             string dontPattern = @"don\'t\(\)";
             int result = 0;
             string input = "";
-            Queue<string> fileQueue = InputGatherer.GetInputs("3 - MullItOver");
+            Queue<string> fileQueue = InputGatherer.GetInputs("03 - MullItOver");
             bool isSecond = InputGatherer.GetUserInput("Mull it Over");
             while (fileQueue.Count > 0)
                 input += fileQueue.Dequeue();
@@ -31,7 +31,6 @@ namespace AdventOfCode_2024
         {
             int value1 = int.Parse(match.Groups[1].Value);
             int value2 = int.Parse(match.Groups[2].Value);
-            Console.WriteLine($"{value1}  *  {value2}");
             return value1 * value2;
         }
         static bool IsValid(Match currentMatch, MatchCollection dos, MatchCollection donts)

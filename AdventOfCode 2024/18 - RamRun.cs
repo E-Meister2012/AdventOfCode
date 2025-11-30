@@ -16,8 +16,8 @@ namespace AdventOfCode_2024
             string result = "";
             isSecond = InputGatherer.GetUserInput("RamRun");
             Queue<string> fileQueue = InputGatherer.GetInputs("18 - RamRun");
-            Console.Write("What is the length (and width) of the ram?  ");
-            length = int.Parse(Console.ReadLine()) + 1;
+            //Console.Write("What is the length (and width) of the ram?  ");
+            length = 71;
             ram = new bool[length, length];
             directions = new Point[4] 
             {

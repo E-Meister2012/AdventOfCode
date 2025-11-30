@@ -14,7 +14,7 @@ namespace AdventOfCode_2024
             List<string> pins = new();
             int result = 0;
             isSecond = InputGatherer.GetUserInput("Code Chronicle");
-            Queue<string> fileQueue = InputGatherer.GetInputs("25 - Code Chronicle");
+            Queue<string> fileQueue = InputGatherer.GetInputs("25 - CodeChronicle");
             Stopwatch watch = new Stopwatch();
             watch.Restart();
             while (fileQueue.Count > 0)

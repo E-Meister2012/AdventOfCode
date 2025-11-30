@@ -16,7 +16,7 @@ namespace AdventOfCode_2024
             isSecond = InputGatherer.GetUserInput("Garden Groups");
             Queue<string> fileQueue = InputGatherer.GetInputs("12 - GardenGroups");
             length = fileQueue.Count;
-            width = fileQueue.Peek().Length - 1;
+            width = fileQueue.Peek().Length;
             map = new char[width, length];
             for (int y = 0; y < length; y++)
             {

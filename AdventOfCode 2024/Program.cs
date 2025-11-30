@@ -15,12 +15,12 @@
 //Console.WriteLine($"The solution of the Restroom Redoubt problem is {RestroomRedoubt.GetInput()}");
 //Console.WriteLine($"The solution of the Warehouse Woes problem is {WarehouseWoes.GetInput()}");
 //Console.WriteLine($"The solution of the Reindeer Maze problem is {ReindeerMaze.GetInput()}");
+//Console.WriteLine($"The solution of the Chronospatial Computer problem is {ChronospatialComputer.GetInput()}");
 //Console.WriteLine($"The solution of the Ram Run problem is {RamRun.GetInput()}");
 //Console.WriteLine($"The solution of the Linnen Layout problem is {LinnenLayout.GetInput()}");
+//Console.WriteLine($"The solution of the Race Condition problem is {RaceCondition.GetInput()}");
 //Console.WriteLine($"The solution of the Keypad Conundrum problem is {KeypadConundrum.GetInput()}");
 //Console.WriteLine($"The solution of the Money Market problem is {MoneyMarket.GetInput()}");
 //Console.WriteLine($"The solution of the LAN Party problem is {LANParty.GetInput()}");
 //Console.WriteLine($"The solution of the Crossed Wires problem is {CrossedWires.GetInput()}");
 Console.WriteLine($"The solution of the Code Chronicle problem is {CodeChronicle.GetInput()}");
-//Console.WriteLine($"The solution of the Chronospatial Computer problem is {ChronospatialComputer.GetInput()}");
-Console.WriteLine($"The solution of the Race Condition problem is {RaceCondition.GetInput()}");

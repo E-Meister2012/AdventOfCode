@@ -10,9 +10,9 @@ namespace AdventOfCode_2024
         public static int GetInput()
         {
             isSecond = InputGatherer.GetUserInput("Resonant Collinearity");
-            Queue<string> fileQueue = InputGatherer.GetInputs("8 - ResonantCollinearity");
+            Queue<string> fileQueue = InputGatherer.GetInputs("08 - ResonantCollinearity");
             length = fileQueue.Count;
-            width = fileQueue.Peek().Length - 1;
+            width = fileQueue.Peek().Length;
             map = new char[width, length];
             char[,] output;
             char[] usedChars = new char[62]; //Max amount of chars, 2x26 for the letters + 10 for digits

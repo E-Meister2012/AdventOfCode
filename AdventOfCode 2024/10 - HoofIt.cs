@@ -4,7 +4,7 @@ namespace AdventOfCode_2024
 {
     internal class HoofIt
     {
-        static List<KeyValuePair<int, int>> visitedNines = new List<KeyValuePair<int, int>>();
+        static List<KeyValuePair<int, int>> visitedNines = new();
         static int[,] map;
         static int length, width;
         static bool isSecond;
@@ -15,7 +15,7 @@ namespace AdventOfCode_2024
             isSecond = InputGatherer.GetUserInput("Hoof It");
             Queue<string> fileQueue = InputGatherer.GetInputs("10 - HoofIt");
             length = fileQueue.Count;
-            width = fileQueue.Peek().Length - 1;
+            width = fileQueue.Peek().Length;
             map = new int[width, length];
             for(int y = 0; y < length; y++)
             {
