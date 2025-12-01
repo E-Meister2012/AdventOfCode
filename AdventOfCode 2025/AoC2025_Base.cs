@@ -11,7 +11,7 @@ namespace AdventOfCode_2025
             int result = 0;
             isSecond = InputGatherer.GetUserInput("NAME");
             Queue<string> fileQueue = InputGatherer.GetInputs("DAY - NAME");
-            Stopwatch watch = new Stopwatch();
+            Stopwatch watch = new();
             watch.Restart();
             //Handle Inputs
 
