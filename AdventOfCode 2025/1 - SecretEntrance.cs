@@ -20,9 +20,8 @@ namespace AdventOfCode_2025
             while (fileQueue.Count > 0)
             {
                 string input = fileQueue.Dequeue();
-                inputs.Add(input[0] == 'L' ? -int.Parse(input.Substring(1)) : int.Parse(input.Substring(1)));
+                inputs.Add(input[0] == 'L' ? -int.Parse(input[1..]) : int.Parse(input[1..]));
             }
-
             Solve();
             watch.Stop();
             Console.WriteLine($"The program took {watch.ElapsedMilliseconds}ms");
