@@ -11,10 +11,10 @@ namespace AdventOfCodeBase
     {
         public static Point[] directions = new Point[]
             {
-                new Point(1,0), //East
-                new Point(0,1), //South
-                new Point(-1,0), //West
-                new Point(0,-1) //North
+                new(1,0), //East
+                new(0,1), //South
+                new(-1,0), //West
+                new(0,-1) //North
             };
 
     }
