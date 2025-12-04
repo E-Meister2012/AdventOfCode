@@ -30,6 +30,7 @@ namespace AdventOfCode_2025
 
         static void Solve()
         {
+            //No if statements if boolean is casted to 0/1 * ...
             for (int i = 0; i < inputs.Count; i++)
             {
                 int prevLoc = location;

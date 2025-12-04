@@ -18,11 +18,11 @@ namespace AdventOfCode_2025
             long result = 0;
             while (batteryAmount < 0)
             {
-                Console.Write("How many batteries are being used?");
+                Console.Write("How many batteries are being used?  ");
                 _ = int.TryParse(Console.ReadLine(), out batteryAmount);
             }
             Queue<string> fileQueue = InputGatherer.GetInputs("3 - Lobby");
-            Stopwatch watch = new Stopwatch();
+            Stopwatch watch = new();
             watch.Restart();
             while (fileQueue.Count > 0)
             {
@@ -40,11 +40,12 @@ namespace AdventOfCode_2025
 
         static long Solve(List<int> bank)
         {
+
             int openItems = batteryAmount - 1;
             List<int> editedBank;
             double returner = 0;
             int[] trueBatteries = new int[batteryAmount];
-            for (int i = 0; i < 12; i++)
+            for (int i = 0; i < batteryAmount; i++)
             {
                 editedBank = [.. bank];
                 editedBank.RemoveRange(bank.Count - openItems, openItems);
@@ -65,7 +66,6 @@ namespace AdventOfCode_2025
             foreach (int i in bank)
                 max = Math.Max(max, i);
             return bank.IndexOf(max);
-
         }
 
     }

@@ -53,6 +53,7 @@ namespace AdventOfCode_2025
         }
         static bool CheckAll(string s, long length)
         {
+            //Check divisors
             string editedS;
             for (int i = 1; i <= length; i++)
             {
