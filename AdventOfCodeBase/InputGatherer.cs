@@ -23,9 +23,6 @@ namespace AdventOfCodeBase
             var userInput = Console.ReadLine();
             return userInput == "2";
         }
-        public static bool IsInBounds(int x, int y, int length, int width)
-        {
-            return x >= 0 && x < width && y >= 0 && y < length;
-        }
+        public static bool IsInBounds(int x, int y, int length, int width) => x >= 0 && x < width && y >= 0 && y < length;
     }
 }

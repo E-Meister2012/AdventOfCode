@@ -32,7 +32,7 @@ namespace AdventOfCode_2025
                     map[x, y] = input[x];
             }
             int tempResult = 1;
-            while (tempResult > 0 && isSecond)
+            while (tempResult > 0)
             {
                 tempResult = 0;
                 for (int y = 0; y < width; y++)
@@ -45,15 +45,8 @@ namespace AdventOfCode_2025
                 result += tempResult;
                 foreach(var (x,y)  in locations)
                     map[x, y] = '.';
-                Console.WriteLine(tempResult);
-            }
-            if(!isSecond)
-            {
-                for (int y = 0; y < width; y++)
-                    for (int x = 0; x < length; x++)
-                        if (map[x, y] == '@')
-                            result += SearchAround(x, y);
-
+                if (!isSecond)
+                    tempResult = 0;
             }
             watch.Stop();
             Console.WriteLine($"The program took {watch.ElapsedMilliseconds}ms");

@@ -1,2 +1,2 @@
 ﻿using AdventOfCode_2025;
-Console.WriteLine($"The solution of the Printing Department problem is {PrintingDepartment.GetInput()}");
+Console.WriteLine($"The solution of the Laboratories problem is {Laboratories.GetInput()}");
